@@ -35,7 +35,7 @@ async function run() {
         // get task based on email query
         app.get("/allTasks/:email", async (req, res) => {
             const email = req.params.email;
-            console.log(email);
+            // console.log(email);
             const result = await taskCollection
                 .find({ userEmail: email, $or: [{ completed: null }, { completed: false }] })
                 .toArray();
@@ -45,7 +45,7 @@ async function run() {
         // get completedTasks based on email query
         app.get("/completedTasks/:email", async (req, res) => {
             const email = req.params.email;
-            console.log(email);
+            // console.log(email);
             const result = await taskCollection.find({ userEmail: email, completed: true }).toArray();
             res.send(result);
         });
@@ -53,7 +53,7 @@ async function run() {
         // delete a task from db
         app.delete("/allTasks/:id", async (req, res) => {
             const id = req.params.id;
-            console.log(id);
+            // console.log(id);
             const result = await taskCollection.deleteOne({ _id: ObjectId(id) });
             res.send(result);
         });
